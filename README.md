@@ -1,72 +1,89 @@
+# Fitness Tracker (Spring Boot)
 
+A web app for tracking workouts and fitness progress, with separate dashboards for admins and users.
 
-## Fitness Tracking App
+## The problem
 
-A lightweight Core Java application for managing user profiles, logging workouts, tracking calories, and saving progress using file-based storage. Designed for beginners, academic submissions, and basic personal use.
+Most beginners log workouts in notes or spreadsheets, which makes it hard to see progress over time or stay motivated. This app keeps workouts, progress and challenges in one place, and gives admins a dashboard to manage users and content.
 
----
+## Features
 
- FeatuUser Profile
+**User dashboard**
+- Log workouts
+- See progress insights as charts
+- Join fitness challenges
+- Read curated guidance content
 
-* Store and update name, age, weight, height
-* Automatic BMI calculati Workout Logging
+**Admin dashboard**
+- Manage users
+- Approve community content
+- Configure system settings
+- Monitor engagement metrics
 
-* Add exercises with name, duration, and calories burned
-* Multiple entries peStatistics
+## Tech stack
 
-* Total workouts
-* Total calories burned
-* Basic progress summaries
+| Layer | Technology |
+|---|---|
+| Language | Java 17 |
+| Framework | Spring Boot 3.3 (Spring MVC) |
+| Persistence | Spring Data JPA, H2 in-memory database |
+| UI | Thymeleaf templates, CSS, Chart.js |
+| Build and tests | Maven, JUnit |
 
-### Data Persistence
+## Getting started
 
-* File handling + Java serialization
-* User and workout data stored across sessions
+Requirements: JDK 17+ and Maven.
 
----
-
-## Tech Stack
-
-| Component     | Technology                    |
-| ------------- | ----------------------------- |
-| Language      | Java                          |
-| Style         | Object-Oriented Programming   |
-| Storage       | File Handling / Serialization |
-| UI (optional) | Java Swing                    |
-| IDE           | IntelliJ / Eclipse / NetBeans |
-
----
-
-## Project Structure
-
-```
-FitnessTrackingApp/
-│
-├── src/
-│   ├── Main.java
-│   ├── User.java
-│   ├── Workout.java
-│   ├── WorkoutManager.java
-│   └── FileHandler.java
-│
-├── data/
-│   ├── users.dat
-│   └── workouts.dat
-│
-└── README.md
+```bash
+git clone https://github.com/shivamkumar2220/fitness-tracker-springboot.git
+cd "fitness-tracker-springboot/FITNESS TRACKING APP"
+mvn spring-boot:run
 ```
 
----
+Then open:
 
-## How to Run
+- Admin dashboard: http://localhost:8080/admin (demo login `admin@example.com` / `admin123`, seeded locally on startup)
+- Sample user dashboard: http://localhost:8080/user?userId=2
 
-1. Clone the repository
+The H2 database is in-memory, so data resets on every restart. To use MySQL or PostgreSQL instead, change the `spring.datasource.*` settings in `application.yml`.
 
-   ```
-   git clone https://github.com/yourusername/Fitness-App.git
-   ```
+## Running tests
 
-2. Open the project in any Java IDE.
+```bash
+mvn test
+```
 
-3. Run `Main.java`.
+The tests cover application startup and the `UserService` workout logging and analytics.
 
+## Project structure
+
+```
+FITNESS TRACKING APP/
+├── pom.xml
+└── src/
+    ├── main/java/com/sach/fitnesstracker/
+    │   ├── config/       # Seeds demo data on startup
+    │   ├── controller/   # Admin and user MVC controllers
+    │   ├── dto/          # Dashboard view models
+    │   ├── model/        # JPA entities
+    │   ├── repository/   # Spring Data repositories
+    │   └── service/      # Business logic
+    ├── main/resources/
+    │   ├── templates/    # Thymeleaf views
+    │   └── static/       # CSS and Chart.js scripts
+    └── test/             # Unit tests
+```
+
+## Screenshots
+
+_Add screenshots of the admin and user dashboards here._
+
+## Planned improvements
+
+- Switch to a persistent database and add proper authentication
+- Expose REST APIs for a mobile client
+- Goal tracking and notifications
+
+## License
+
+MIT
